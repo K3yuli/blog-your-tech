@@ -92,6 +92,39 @@ router.put('/:id', (req, res) => {
     });
 });
 
+// PUT /api/posts/upcomment
+router.put('/upcomment', (req, res) => {
+    Comment.create({
+        // to create comment, need to pass in both the user's and post's id with req.body
+        user_id: req.body.user_id,
+        post_id: req.body.post_id
+    }).then(() => {
+        // then find the post commented on
+        return Post.findOne({
+            where: {
+                id: req.body.post_id
+            },
+            attributes: [
+                'id',
+                'content',
+                'title',
+                'created_at',
+                // use raw mysql aggregate function query to get a count of how many comments the post has and return it under the name 'comment_count'
+                [
+                    sequelize.literal('(SELECT COUNT(*) FROM comment WHERE post_id = comment.post_id)'),
+                    'comment_count'
+                ]
+            ]
+        })
+    })
+
+    .then(dbPostData => res.json(dbPostData))
+    .catch(err => {
+        console.log(err);
+        res.status(400).json(err);
+    });
+});
+
 router.delete('/:id', (req, res) => {
     Post.destroy({
         where: {
