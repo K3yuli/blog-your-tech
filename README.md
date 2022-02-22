@@ -41,29 +41,3 @@ THEN I am signed out of the site
 WHEN I am idle on the site for more than a set time
 THEN I am able to view comments but I am prompted to log in again before I can add, update, or delete comments
 ```
-
-- Part One (ORM)
-To succeed in this Challenge, you’ll apply the following skills:
-
-Configure the Sequelize ORM in a Node.js application.
-
-Create models for categories, products, and tags in a relational database and a through table that will connect the product and tag models.
-
-Define and implement CRUD methods, using Sequelize to interact with your models in each API endpoint through proper RESTful commands (GET, POST, PUT, DELETE).
-
-Create and implement Sequelize associations to join tables.
-
-Use environment variables to protect sensitive data, such as your MySQL username and password.
-----------------------------------------------------------
-- Step Two:
-To succeed in this Challenge, you’ll apply the following skills:
-
-Structure your application following the Model-View-Controller (MVC) paradigm.
-
-Modularize your code into separate folders for your Models, View, and Controllers to enforce separation of concerns.
-
-Render dynamic HTML for your views using the Handlebars.js template engine.
-
-Implement user authentication.
-
-Configure Heroku so that you can deploy your application using a MySQL database.
