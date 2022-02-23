@@ -1,26 +1,36 @@
 const router = require('express').Router();
-const { Post, User } = require('../../models');
+const { Post, User, Comment } = require('../../models');
+const { sequelize } = require('../../models/Comment');
 
 // get all users
 router.get('/', (req, res) => {
     Post.findAll({
         // query configuration
+        order: [['created_at', 'DESC']],
         attributes: [
         'id',
         'title',
         'content',
         'created_at'
-    ],
-        order: [['created_at', 'DESC']],
-        // JOIN to the User table
+        ],
         include: [
+            // include the comment model
+            {
+                model: Comment,
+                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                include: {
+                    model: User,
+                    attributes: ['username']
+                }
+            },
+            // JOIN to the User table
             {
                 model: User,
                 attributes: ['username']
             }
         ]
-
     })
+
 // create a Promise that captures the response from the database call
     .then(dbPostData => res.json(dbPostData))
     .catch(err => {
@@ -34,7 +44,12 @@ router/this.get('/:id', (req, res) => {
         where: {
             id: req.params.id
         },
-        attributes: ['id', 'content', 'title', 'created_at'],
+        attributes: [
+            'id',
+            'content',
+            'title',
+            'created_at'
+        ],
         include: [
             {
                 model: User,
@@ -109,11 +124,6 @@ router.put('/upcomment', (req, res) => {
                 'content',
                 'title',
                 'created_at',
-                // use raw mysql aggregate function query to get a count of how many comments the post has and return it under the name 'comment_count'
-                [
-                    sequelize.literal('(SELECT COUNT(*) FROM comment WHERE post_id = comment.post_id)'),
-                    'comment_count'
-                ]
             ]
         })
     })
