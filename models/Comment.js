@@ -10,6 +10,9 @@ Comment.init(
             primaryKey: true,
             autoIncrement: true
         },
+        comment_text: {
+            type: DataTypes.TEXT
+        },
         // connect to User table by id
         user_id: {
             type: DataTypes.INTEGER,
@@ -31,7 +34,6 @@ Comment.init(
     },
     {
         sequelize,
-        timestamps: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'comment'
