@@ -8,10 +8,10 @@ test('format_date() returns a date string', () => {
 });
 
 // test for plural words
-test('format_plural() returns plural string', () => {
-    const plural =  new Word
+test('format_plural() returns pluralized word', () => {
+    const word1 =  format_plural('tiger', 1);
+    const word2 = format_plural('lion', 2);
 
-    expect(format_plural(plural)).toBe('pluralized');
+    expect(word1).toBe('tiger');
+    expect(word2).toBe('lions');
 });
-
-// test for 
