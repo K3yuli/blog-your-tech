@@ -69,13 +69,15 @@ router.post('/', (req, res) => {
                 res.json(dbUserData);
         });
 });
+});
 
 router.post('/login', (req, res) => {
    User.findOne({
           where: {
             email: req.body.email
           }
-    }).then(dbUserData => {
+    })
+    .then(dbUserData => {
           if (!dbUserData) {
             res.status(400).json({ message: 'No user with that email address!' });
             return;
@@ -96,12 +98,17 @@ router.post('/login', (req, res) => {
                 
           res.json({ user: dbUserData, message: 'You are now logged in!' });
         });
-    });
-});
+    })
+    .catch(err => {
+        console.log(err);
+        res.log(Err);
+        res.status(500).json(err);
+    })
 });
 
+
 router.post('/logout', (req, res) => {
-    if(req.session.logged) {
+    if(req.session.loggedIn) {
         req.session.destroy(() => {
         res.status(204).end();
     });
