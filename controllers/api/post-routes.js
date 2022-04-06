@@ -107,6 +107,7 @@ router.put('/:id', (req, res) => {
     });
 });
 
+<<<<<<< HEAD
 // PUT /api/posts/upcomment
 // router.put('/upcomment', (req, res) => {
 //     Comment.create({
@@ -135,6 +136,9 @@ router.put('/:id', (req, res) => {
 //     });
 // });
 
+=======
+// DELETE route
+>>>>>>> develop
 router.delete('/:id', (req, res) => {
     Post.destroy({
         where: {
