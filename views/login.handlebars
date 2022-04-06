@@ -1,34 +1,19 @@
-{{!-- login form --}}
-<form class="login-form">
-    <div>
-        <label for="email-login">email:</label>
-        <input type="text" id="email-login">
+<div class="card">
+    <div class="card-header">
+        <h2>Login</h2>
     </div>
-    <div>
-        <label for="password-login">password:</label>
-        <input type="password" id="password-login">
-    </div>
-    <dir>
-        <button type="submit">login</button>
-    </dir>
-</form>
-{{!-- signup form --}}
-<form class="signup-form">
-    <div>
-        <label for="username-signup">username:</label>
-        <input type="text" id="username-signup">
-    </div>
-    <div>
-        <label for="email-signup">email:</label>
-        <input type="password" id="email-signup">
-    </div>
-    <div>
-        <label for="password-signup">password:</label>
-        <input type="password" id="password-signup">
-    </div>
-    <dir>
-        <button type="submit">signup</button>
-    </dir>
-</form>
+    <form id="login-form" class="card-body">
+        <div>
+            <label for="">Username</label>
+            <input type="text" id="username-input-login">
+        </div>
+        <div>
+            <label for="password-input-login" class="form-label">Password</label>
+            <input type="password" id="password-input-login">
+        </div>
+        <button type="submit" id="login-btn" class="btn">Login</button>
+        <a href="button" href="/signup">Sign up instead</a>
+    </form>
+</div>
 {{!-- connecting to js file for login --}}
 <script src="/javascript/login.js"</script>

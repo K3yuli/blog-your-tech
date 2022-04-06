@@ -1,29 +1,45 @@
-<<<<<<< HEAD
-<article class="post">
-    <div class="title">
-        <h1>{{post.title}}</h1>
-        <p>{{post.content}}</p>
+<div class="post">
+  <article class="card">
+    <div class="card-header flex-row justify-space-between">
+      <h2>{{post.title}}</h2>
+      <div>
+        Posted by {{post.User.username}} on {{post.createdAt}}
+      </div>
     </div>
-    <div class="meta">
-        <a href="/post/{{post.id}}">{{post.comment.length}} comment(s)</a>
+    <div class="card-body">
+      {{post.body}}
     </div>
-</article>
-=======
-{{> post-info post}}
+  </article>
+  {{#if post.Comments}}
+  <section class="card">
+    <div class="card-header">
+      <h3>Comments</h3>
+    </div>
+    <div class="card-body">
+      {{#each post.Comments}}
+      <div>
+        <p>
+          {{body}}
+        </p>
+        <p>
+          &mdash; {{User.username}}, {{createdAt}}
+        </p>
+      </div>
+      {{/each}}
+    </div>
+  </section>
+  {{/if}}
 
->>>>>>> feature/clean-up
-{{#if loggedIn}}
-<form class="comment-form">
-  <div>
-    <textarea name="comment-body"></textarea>
-  </div>
-
-  <div>
-    <button type="submit">add comment</button>
-  </div>
-</form>
-{{/if}}
-{{> comment post.comment}}
-{{#if loggedIn}}
-<script src="/javascript/comment.js"></script>
-{{/if}}
+  <form id="new-comment-form" class="card">
+    <div>
+      <h3></h3>
+    </div>
+    <div>
+      <input type="text">
+      <label for=""></label>
+      <textarea name="" id="" cols="30" rows="10"></textarea>
+      <button></button>
+    </div>
+  </form>
+</div>
+<script src="/public/javascript/comment.js"></script>
