@@ -11,7 +11,10 @@ Comment.init(
             autoIncrement: true
         },
         comment_text: {
-            type: DataTypes.TEXT
+            type: DataTypes.STRING,
+            validate: {
+                len: [3]
+            }
         },
         // connect to User table by id
         user_id: {

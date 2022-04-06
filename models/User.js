@@ -28,7 +28,8 @@ User.init(
         // define a username colum
         username: {
             type: DataTypes.STRING,
-            allNull: false
+            allNull: false,
+            unique: true
         },
         // define an email column
         email: {
