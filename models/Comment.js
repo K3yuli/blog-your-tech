@@ -12,7 +12,9 @@ Comment.init(
         },
         comment_text: {
             type: DataTypes.STRING,
-            allowNull: false
+            validate: {
+                len: [3]
+            }
         },
         // connect to User table by id
         user_id: {

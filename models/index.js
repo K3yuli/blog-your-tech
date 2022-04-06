@@ -26,11 +26,13 @@ User.belongsToMany(Post, {
     foreignKey: 'user_id'
 });
 
+// ////////////////////////////
 Post.belongsToMany(User, {
     through: Comment,
     aws: 'commented_posts',
     foreignKey: 'post_id'
 });
+// ///////////////////////////
 
 // for posts one to many
 User.hasMany(Post, {

@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Post, User, Comment } = require('../../models');
-const { sequelize } = require('../../models/Comment');
+const sequelize = require('../../config/connection');
 
 // get all users
 router.get('/', (req, res) => {
@@ -32,7 +32,7 @@ router.get('/', (req, res) => {
     })
 
 // create a Promise that captures the response from the database call
-    .then(dbPostData => res.json(dbPostData))
+    .then(dbPostData => res.json(dbPostData.reverse()))
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
@@ -54,6 +54,14 @@ router.get('/:id', (req, res) => {
             {
                 model: User,
                 attributes: ['username']
+            },
+            {
+                model: Comment,
+                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                include: {
+                    model: User,
+                    attributes: ['username']
+                }
             }
         ]
     })
