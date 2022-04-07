@@ -4,19 +4,23 @@ const User = require('./User');
 
 // create associations
 Comment.belongsTo(User, {
-    foreignKey: 'user_id'
+    foreignKey: 'user_id',
+    onDelete: 'Cascade'
 });
 
 Comment.belongsTo(Post, {
-    foreignKey: 'post_id'
+    foreignKey: 'post_id',
+    onDelete: 'cascade'
 });
 
 User.hasMany(Comment, {
-    foreignKey: 'user_id'
+    foreignKey: 'user_id',
+    onDelete: 'Cascade'
 });
 
 Post.hasMany(Comment, {
-    foreignKey: 'post_id'
+    foreignKey: 'post_id',
+    onDelete: 'Cascade'
 });
 
 // for comments many to many
@@ -36,12 +40,14 @@ Post.belongsToMany(User, {
 
 // for posts one to many
 User.hasMany(Post, {
-    foreignKey: 'user_id'
+    foreignKey: 'user_id',
+    onDelete: 'Cascade'
 });
 
 // for user
 Post.belongsTo(User, {
     foreignKey: 'user_id',
+    onDelete: 'Cascade'
 });
 
 

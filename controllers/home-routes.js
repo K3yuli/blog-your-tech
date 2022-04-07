@@ -1,6 +1,3 @@
-const req = require('express/lib/request');
-const res = require('express/lib/response');
-const sequelize = require('../config/connection');
 const {Post, User, Comment } = require('../models');
 const router = require('express').Router();
 
@@ -47,13 +44,16 @@ router.get('/login', (req, res) => {
         res.redirect('/');
         return;
     }
-    
     res.render('login');
 });
 
 router.get('/signup', (req, res) => {
-    res.render('signup');
-})
+    if(req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
+    res.render("signup");
+});
 
 router.get('/post/:id', (req, res) => {
 Post.findOne({
