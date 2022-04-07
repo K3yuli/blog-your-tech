@@ -1,6 +1,5 @@
 // Express.js router to keep the routes organized.
 // using the four main methods for an API: GET, POST, PUT, and DELETE.
-
 const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
 
